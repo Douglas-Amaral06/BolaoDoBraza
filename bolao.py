@@ -143,7 +143,7 @@ st.markdown("""
 <div class="pix-box">
     <h3>💰 Valor da Aposta: R$ 10,00</h3>
     <p>Para validar seu palpite, faça o Pix de R$10,00 para a chave abaixo:</p>
-    <div class="pix-key">sua-chave-aleatoria-ou-cpf-aqui</div>
+    <div class="pix-key">11989336439</div>
     <p style="font-size: 0.8rem; color: #8B9BB4;">O prêmio total será dividido entre os acertadores do placar exato!</p>
 </div>
 """, unsafe_allow_html=True)
