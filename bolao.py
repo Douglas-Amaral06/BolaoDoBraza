@@ -12,9 +12,11 @@ st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap');
 
+    /* Força o fundo escuro e blinda contra o Light Mode do celular */
     .stApp {
-        background-color: #0B0E14;
-        background: radial-gradient(circle at top center, #0B2516, #050810);
+        background-color: #0B0E14 !important;
+        background: radial-gradient(circle at top center, #0B2516, #050810) !important;
+        color: #FFFFFF !important;
     }
     
     /* Box do Título com animação Hover */
@@ -36,7 +38,7 @@ st.markdown("""
 
     .main-title {
         font-family: 'Poppins', sans-serif;
-        color: #FFDF00; 
+        color: #FFDF00 !important; 
         font-size: 3.2rem;
         font-weight: 900;
         margin: 0;
@@ -46,30 +48,33 @@ st.markdown("""
     }
     
     .sub-title {
-        color: #39FF14; 
+        color: #39FF14 !important; 
         font-family: 'Poppins', sans-serif;
         font-weight: 700;
         letter-spacing: 1px;
     }
 
-    /* Animação Hover no Formulário Nativo do Streamlit */
+    /* Animação Hover no Formulário Nativo do Streamlit e Força Texto Branco */
     [data-testid="stForm"] {
         transition: all 0.3s ease-in-out;
-        background-color: rgba(20, 25, 40, 0.3);
-        border: 1px solid rgba(0, 255, 65, 0.15);
+        background-color: rgba(20, 25, 40, 0.3) !important;
+        border: 1px solid rgba(0, 255, 65, 0.15) !important;
         border-radius: 15px;
         padding: 20px;
+    }
+    [data-testid="stForm"] p, [data-testid="stForm"] label {
+        color: #FFFFFF !important;
     }
     [data-testid="stForm"]:hover {
         transform: scale(1.02);
         box-shadow: 0 10px 30px rgba(57, 255, 20, 0.15);
-        border-color: #39FF14;
+        border-color: #39FF14 !important;
     }
 
     /* Estilo e Animação da Caixa de Pix */
     .pix-box {
-        background: rgba(20, 25, 40, 0.6);
-        border-left: 4px solid #39FF14;
+        background: rgba(20, 25, 40, 0.6) !important;
+        border-left: 4px solid #39FF14 !important;
         padding: 25px;
         border-radius: 15px;
         margin-bottom: 30px;
@@ -78,31 +83,35 @@ st.markdown("""
         transition: all 0.3s ease-in-out;
         border: 1px solid rgba(255, 255, 255, 0.05);
     }
+    .pix-box p {
+        color: #E2E8F0 !important;
+    }
     .pix-box:hover {
         transform: scale(1.02);
         box-shadow: 0 10px 30px rgba(255, 223, 0, 0.15);
-        border-left-color: #FFDF00;
+        border-left-color: #FFDF00 !important;
     }
 
     .pix-key {
         font-size: 1.4rem;
-        color: #FFDF00;
+        color: #FFDF00 !important;
         font-weight: bold;
-        background: rgba(0,0,0,0.5);
+        background: rgba(0,0,0,0.5) !important;
         padding: 12px;
         border-radius: 8px;
         display: inline-block;
         margin: 15px 0;
-        border: 1px dashed rgba(255, 223, 0, 0.3);
-        word-break: break-all; /* Impede que a chave quebre o layout no celular */
+        border: 1px dashed rgba(255, 223, 0, 0.3) !important;
+        word-break: break-all;
     }
     
-    /* Inputs customizados */
+    /* Inputs customizados cegos contra Light Mode */
     div[data-baseweb="input"] input, div[data-baseweb="numberinput"] input {
         background-color: rgba(5, 8, 16, 0.8) !important;
         border: 1px solid rgba(0, 255, 65, 0.3) !important;
-        color: #FFF !important;
+        color: #FFFFFF !important;
         font-weight: bold;
+        -webkit-text-fill-color: #FFFFFF !important; /* Força cor no Safari/iOS */
     }
     
     div[data-baseweb="input"] input:focus, div[data-baseweb="numberinput"] input:focus {
@@ -127,6 +136,11 @@ st.markdown("""
     div[data-testid="stFormSubmitButton"] button:hover {
         transform: translateY(-3px) !important;
         box-shadow: 0 10px 20px rgba(0, 255, 65, 0.4) !important;
+    }
+
+    /* Títulos e Textos Gerais */
+    h1, h2, h3, h4, h5, h6, p, span {
+        color: #FFFFFF !important;
     }
 
     /* RESPONSIVIDADE PARA CELULARES */
@@ -183,11 +197,11 @@ def salvar_palpite(nome, pix, gols_br, gols_adv):
 st.markdown("""
 <div class="title-box">
     <h1 class="main-title">🏆 BOLÃO DO HEXA</h1>
-    <p class="sub-title">BRASIL x SÉRVIA (FASE DE GRUPOS)</p>
+    <p class="sub-title">BRASIL x ESCÓCIA (FASE DE GRUPOS)</p>
 </div>
 """, unsafe_allow_html=True)
 
-# Bloco 1: Formulário de Palpite (Movido para cima)
+# Bloco 1: Formulário de Palpite
 st.markdown("<h3 style='text-align: center; color: #FFF; font-family: Poppins;'>📝 1. Registre seu Palpite</h3>", unsafe_allow_html=True)
 
 with st.form("form_palpite"):
@@ -203,9 +217,9 @@ with st.form("form_palpite"):
     with col_br:
         gols_brasil = st.number_input("🇧🇷 BRASIL", min_value=0, max_value=20, value=0, step=1)
     with col_x:
-        st.markdown("<h1 style='text-align: center; margin-top: 15px; color: #8B9BB4;'>X</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 style='text-align: center; margin-top: 15px; color: #8B9BB4 !important;'>X</h1>", unsafe_allow_html=True)
     with col_adv:
-        gols_adversario = st.number_input("🏴 SÉRVIA", min_value=0, max_value=20, value=0, step=1)
+        gols_adversario = st.number_input("🏴󠁧󠁢󠁳󠁣󠁴󠁿 ESCÓCIA", min_value=0, max_value=20, value=0, step=1)
         
     st.markdown("<br>", unsafe_allow_html=True)
     submit_button = st.form_submit_button("✅ CONFIRMAR MEU PALPITE")
@@ -218,15 +232,15 @@ with st.form("form_palpite"):
             st.success(f"🎉 Palpite registrado com sucesso! Faça o pagamento abaixo para validá-lo, {nome_apostador}!")
             st.balloons()
 
-# Bloco 2: Instruções de Pagamento (Movido para baixo)
+# Bloco 2: Instruções de Pagamento
 st.markdown("<h3 style='text-align: center; color: #FFF; font-family: Poppins; margin-top: 30px;'>💰 2. Valide sua Aposta</h3>", unsafe_allow_html=True)
 
 st.markdown("""
 <div class="pix-box">
-    <h3 style="color: #FFF; font-family: Poppins; margin-bottom: 10px;">Valor Único: R$ 10,00</h3>
-    <p style="color: #E2E8F0;">Para que seu palpite seja validado no bolão, faça o Pix para a chave abaixo:</p>
+    <h3 style="color: #FFF !important; font-family: Poppins; margin-bottom: 10px;">Valor Único: R$ 10,00</h3>
+    <p style="color: #E2E8F0 !important;">Para que seu palpite seja validado no bolão, faça o Pix para a chave abaixo:</p>
     <div class="pix-key">sua-chave-pix-aleatoria-ou-cpf-aqui</div>
-    <p style="font-size: 0.85rem; color: #8B9BB4; margin-top: 10px;">O prêmio total será dividido entre os acertadores do placar exato!</p>
+    <p style="font-size: 0.85rem; color: #8B9BB4 !important; margin-top: 10px;">O prêmio total será dividido entre os acertadores do placar exato!</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -240,8 +254,8 @@ df_palpites = carregar_palpites()
 if not df_palpites.empty:
     df_exibicao = df_palpites[["Nome", "Gols_Brasil", "Gols_Adversario"]].copy()
     
-    # Adiciona uma coluna visual de Placar
-    df_exibicao["Placar Apostado"] = df_exibicao.apply(lambda row: f"🇧🇷 {row['Gols_Brasil']} x {row['Gols_Adversario']} 🏴", axis=1)
+    # Adiciona uma coluna visual de Placar (Atualizado para Escócia)
+    df_exibicao["Placar Apostado"] = df_exibicao.apply(lambda row: f"🇧🇷 {row['Gols_Brasil']} x {row['Gols_Adversario']} 🏴󠁧󠁢󠁳󠁣󠁴󠁿", axis=1)
     
     st.dataframe(df_exibicao[["Nome", "Placar Apostado"]], use_container_width=True, hide_index=True)
     
