@@ -31,7 +31,9 @@ yarn-error.*
 *.pem
 
 # local env files
+.env
 .env*.local
+app/config.ts
 
 # typescript
 *.tsbuildinfo
@@ -41,3 +43,6 @@ app-example
 # generated native folders
 /ios
 /android
+
+# Database (keep in local, git ignore .db for security)
+data/*.db
