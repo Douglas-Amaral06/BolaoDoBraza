@@ -31,7 +31,7 @@ export default function BetScreen() {
   const { userEmail } = useAuth();
   const insets = useSafeAreaInsets();
   const params = useLocalSearchParams();
-  const fixtureId = params.fixtureId ? Number(params.fixtureId) : null;
+  const fixtureId = params.fixtureId ? String(params.fixtureId) : null;
 
   const [jogos, setJogos] = useState<Jogo[]>([]);
   const [jogoSelecionado, setJogoSelecionado] = useState<Jogo | null>(null);
